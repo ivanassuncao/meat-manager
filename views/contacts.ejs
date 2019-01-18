@@ -1,0 +1,44 @@
+<%- include("inc/page-header") -%>
+	
+	<div class="gtco-section">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-6 animate-box">
+						<%- include('inc/content/alerts') -%>
+					<h3>Entre em Contato</h3>
+					<form action="/contacts" method="post">
+						<div class="row form-group">
+							<div class="col-md-12">
+								<label class="sr-only" for="name">Nome</label>
+								<input type="text" id="name" name="name" class="form-control" placeholder="Seu nome" value="<%= body.name %>" >
+							</div>
+							
+						</div>
+
+						<div class="row form-group">
+							<div class="col-md-12">
+								<label class="sr-only" for="inputEmail">E-mail</label>
+								<input type="email" id="email" name="email" class="form-control" placeholder="Seu endereço de e-mail" value="<%= body.email %>" >
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-12">
+								<label class="sr-only" for="message">Mensagem</label>
+								<textarea name="message" id="message" cols="30" rows="10" class="form-control" 
+								placeholder="Escreve alguma coisa" ><%= body.message %></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+						</div>
+
+					</form>		
+				</div>
+					<%- include('inc/content/contact-info') -%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%- include("inc/page-footer") -%>
