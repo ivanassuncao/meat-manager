@@ -161,11 +161,35 @@ formCreate.save().then(json=>{
 let formUpdate = document.querySelector('#modal-update form');
 
 formUpdate.save().then(json=>{
+
   window.location.reload();
+
 }).catch(err=>{
   console.log(err)
 });
 
+[...document.querySelectorAll('.btn-delete')].forEach(btn=>{
+  btn.addEventListener('click',e=>{
+
+    let tr = e.path.find(el => {
+      return (el.tagName.toUpperCase() === 'TR');
+    });
+
+    let data = JSON.parse(tr.dataset.row);
+    
+    if(confirm(`Deseja realmente excluir o menu ${data.title} ?` ))
+    {
+        fetch(`/admin/menus/${data.id}`,{
+        method:'DELETE'
+      })
+      .then(response=> response.json())
+      .then(json=> {
+          window.location.reload();
+      })
+    
+    }
+  });
+});
 
 [...document.querySelectorAll('.btn-update')].forEach(btn=> {
 
@@ -179,6 +203,8 @@ formUpdate.save().then(json=>{
 
     for(let name in data){
 
+      let input =  formUpdate.querySelector(`[name=${name}]`);
+      
       switch(name){
         case 'photo':
           formUpdate.querySelector("img").src = "/" + data[name];
